@@ -2,6 +2,7 @@
 using Battleships.Application.Game.Commands.FireNewShot;
 using Battleships.Application.Game.Commands.StartGame;
 using Battleships.Application.Game.Queries;
+using Battleships.Application.Game.Queries.GetPendingGameState;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
@@ -12,7 +13,7 @@ namespace Battleships.Api.Controllers
     public class GameController : BaseController
     {
         [HttpPost]
-        [SwaggerOperation("Start new game")]
+        [SwaggerOperation("Start a new game")]
         public async Task<ActionResult<int>> StartNewGame(StartNewGameCommand command)
         {
             var result = await Mediator.Send(command);
@@ -20,11 +21,20 @@ namespace Battleships.Api.Controllers
            
         }
 
-        [HttpGet("{gameId}/state")]
-        [SwaggerOperation("Get game state")]
-        public async Task<IActionResult> GetGameState([FromRoute] int gameId)
+        [HttpGet("{gameId}/finalState")]
+        [SwaggerOperation("Get final game state")]
+        public async Task<IActionResult> GetFinalGameState([FromRoute] int gameId)
         {
-            var query = new GetGameStateQuery(gameId);
+            var query = new GetFinalGameStateQuery(gameId);
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("{gameId}/pendingState")]
+        [SwaggerOperation("Get game state")]
+        public async Task<IActionResult> GetPendingGameState([FromRoute] int gameId)
+        {
+            var query = new GetPendingGameStateQuery(gameId);
             var result = await Mediator.Send(query);
             return Ok(result);
         }

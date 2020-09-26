@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Battleships.Application.Game.Models;
 using Battleships.Infrastructure;
 using Battleships.Infrastructure.DatabaseEntities;
 using Microsoft.EntityFrameworkCore;
@@ -17,19 +18,39 @@ namespace Battleships.Application.Game.Services
             _context = context;
             _mapper = mapper;
         }
-        public async Task<Domain.Entities.Game> Get(int gameId, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Game> GetFinalState(int gameId, CancellationToken cancellationToken)
+        {
+            var gameEntity = await GetGameEntity(gameId, cancellationToken);
+
+            return _mapper.Map<Domain.Entities.Game>(gameEntity);
+        }
+        public async Task<PendingGameStateDto> GetPendingState(int gameId, CancellationToken cancellationToken)
+        {
+            var gameEntity = await GetGameEntity(gameId, cancellationToken);
+            var game = _mapper.Map<Domain.Entities.Game>(gameEntity);
+
+            return _mapper.Map<PendingGameStateDto>(game);
+        }
+
+        private async Task<GameEntity> GetGameEntity(int gameId, CancellationToken cancellationToken)
         {
             var gameEntity = await _context.Games
                 .Include(g => g.PlayerBoard.Ships)
-                    .ThenInclude(s => s.ShipPositions)
+                .ThenInclude(s => s.ShipPositions).ThenInclude(sp => sp.Coordinate)
                 .Include(g => g.PlayerBoard.HitShots)
-                    .ThenInclude(s => s.Coordinate)
+                .ThenInclude(s => s.Coordinate)
                 .Include(g => g.PlayerBoard.MissShots)
-                    .ThenInclude(s => s.Coordinate)
+                .ThenInclude(s => s.Coordinate)
+                .Include(g => g.ComputerBoard.Ships)
+                .ThenInclude(s => s.ShipPositions).ThenInclude(sp => sp.Coordinate)
+                .Include(g => g.ComputerBoard.HitShots)
+                .ThenInclude(s => s.Coordinate)
+                .Include(g => g.ComputerBoard.MissShots)
+                .ThenInclude(s => s.Coordinate)
                 .FirstOrDefaultAsync(x => x.Id == gameId, cancellationToken);
-          
-            return _mapper.Map<GameEntity, Domain.Entities.Game>(gameEntity);
-
+            return gameEntity;
         }
+
+       
     }
 }
