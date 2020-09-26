@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Battleships.Application.Exception;
 using Battleships.Domain.Entities;
 using Battleships.Domain.Enums;
 using Battleships.Infrastructure;
@@ -52,6 +53,10 @@ namespace Battleships.Application.Game.Commands.FireNewShot
                 .FirstOrDefaultAsync(x => x.Id == request.GameId, cancellationToken);
 
             var game = _mapper.Map<Domain.Entities.Game>(gameEntity);
+
+            var playerFiredCoordinates = game.ComputerBoard.HitShots.Union(game.PlayerBoard.MissShots).ToList();
+            if(playerFiredCoordinates.Contains(request.Coordinate))
+                throw new AlreadyFiredCoordinateException();
 
             var playerFireResult = game.PlayerShootAt(request.Coordinate);
             AddFiredCoordinate(gameEntity.ComputerBoard, request.Coordinate, playerFireResult);
