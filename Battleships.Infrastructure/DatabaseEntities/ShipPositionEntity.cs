@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battleships.Infrastructure.DatabaseEntities
+﻿namespace Battleships.Infrastructure.DatabaseEntities
 {
     public class ShipPositionEntity : IEntity
     {

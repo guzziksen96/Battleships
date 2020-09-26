@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Battleships.Domain.Entities;
 using Battleships.Domain.Enums;
+using Battleships.Domain.Rules;
 
 namespace Battleships.Application
 {
@@ -13,21 +12,12 @@ namespace Battleships.Application
         {
             var board = new Board();
 
-            var carrierCoordinates = GetCoordinates(5, board);
-            board.Ships.Add(new Ship("Carrier", carrierCoordinates));
+            foreach (var shipName in ShipNames.All)
+            {
+                var shipCoordinate = GetCoordinates(ShipWidths.Values[shipName], board);
+                board.Ships.Add(new Ship(shipName, shipCoordinate));
+            }
 
-            var battleShipCoordinates = GetCoordinates(4, board);
-            board.Ships.Add(new Ship("Battleship", battleShipCoordinates));
-
-            var cruiserCoordinates = GetCoordinates(3, board);
-            board.Ships.Add(new Ship("Cruiser", cruiserCoordinates));
-
-            var submarineCoordinates = GetCoordinates(3, board);
-            board.Ships.Add(new Ship("Submarine", submarineCoordinates));
-
-            var destroyerCoordinates = GetCoordinates(2, board);
-            board.Ships.Add(new Ship("Destroyer", destroyerCoordinates));
- 
             return board; 
         }
 

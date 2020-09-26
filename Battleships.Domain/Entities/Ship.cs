@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Battleships.Domain.Entities
 {
     public class Ship
     {
+        public Ship()
+        {
+            
+        }
         public Ship(string name, List<Coordinate> shipPositions)
         {
             Name = name;

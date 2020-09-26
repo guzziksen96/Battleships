@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Battleships.Domain.Enums;
 
 namespace Battleships.Domain.Entities
@@ -20,12 +17,12 @@ namespace Battleships.Domain.Entities
         public void ComputerShootAt(Coordinate coordinate) => PlayerBoard.ShootAt(coordinate);
         public GameResultEnum GetResult()
         {
-            if (PlayerBoard.Ships.All(s => s.IsSunk(PlayerBoard.Hits)))
+            if (PlayerBoard.Ships.All(s => s.IsSunk(PlayerBoard.HitShots)))
             {
                 return GameResultEnum.PlayerLost;
             }
 
-            if (ComputerBoard.Ships.All(s => s.IsSunk(ComputerBoard.Hits)))
+            if (ComputerBoard.Ships.All(s => s.IsSunk(ComputerBoard.HitShots)))
             {
                 return GameResultEnum.PlayerWon;
             }

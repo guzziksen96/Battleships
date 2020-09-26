@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleships.Infrastructure.Configurations;
+﻿using Battleships.Infrastructure.Configurations;
 using Battleships.Infrastructure.DatabaseEntities;
 using Battleships.Infrastructure.SeedData;
 using Microsoft.EntityFrameworkCore;

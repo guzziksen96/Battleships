@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Battleships.Application;
+﻿using System.Threading.Tasks;
+using Battleships.Application.Game.Commands.FireNewShot;
 using Battleships.Application.Game.Commands.StartGame;
 using Battleships.Application.Game.Queries;
-using Battleships.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using NSwag.Annotations;
 
@@ -31,6 +27,16 @@ namespace Battleships.Api.Controllers
             var query = new GetGameStateQuery(gameId);
             var result = await Mediator.Send(query);
             return Ok(result);
+        }
+
+        [HttpPost("{gameId}/shot")]
+        [SwaggerOperation("Fire a new shot")]
+        public async Task<ActionResult<int>> FireNewShot([FromRoute] int gameId, FireNewShotCommand command)
+        {
+            command.SetGameId(gameId);
+            var result = await Mediator.Send(command);
+            return Ok(result);
+
         }
     }
 }

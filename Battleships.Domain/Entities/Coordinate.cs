@@ -1,18 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Battleships.Domain.Entities
 {
     public class Coordinate : IEquatable<Coordinate>
     {
+        public Coordinate()
+        {
+            
+        }
         public Coordinate(int row, char column)
         {
             Row = row;
             Column = column;
         }
-        public int Row { get; private set; }
-        public char Column { get; private set; }
+        public int Row { get; set; }
+        public char Column { get; set; }
 
         public bool Equals(Coordinate other)
         {

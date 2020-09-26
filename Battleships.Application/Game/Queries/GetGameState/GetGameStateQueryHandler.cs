@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Battleships.Application.Game.Services;
-using Battleships.Domain.Entities;
 using MediatR;
 
 namespace Battleships.Application.Game.Queries

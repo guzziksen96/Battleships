@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleships.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 
 namespace Battleships.Application.Game.Queries
 {

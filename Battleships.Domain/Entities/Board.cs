@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Battleships.Domain.Entities
 {
@@ -18,8 +16,8 @@ namespace Battleships.Domain.Entities
         }
 
         public List<Ship> Ships { get; set; } = new List<Ship>();
-        public List<Coordinate> Misses { get; set; } = new List<Coordinate>();
-        public List<Coordinate> Hits { get; set; } = new List<Coordinate>();
+        public List<Coordinate> MissShots { get; set; } = new List<Coordinate>();
+        public List<Coordinate> HitShots { get; set; } = new List<Coordinate>();
 
         public void ShootAt(Coordinate coordinate)
         {
@@ -27,11 +25,11 @@ namespace Battleships.Domain.Entities
             {
                 if (ship.ShipPositions.Contains(coordinate))
                 {
-                    Hits.Add(coordinate);
+                    HitShots.Add(coordinate);
                 }
                 else
                 {
-                    Misses.Add(coordinate);
+                    MissShots.Add(coordinate);
                 }
             }
         }

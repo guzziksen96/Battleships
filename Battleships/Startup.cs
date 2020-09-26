@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
+using Battleships.Application.Game.Commands.StartGame;
+using Battleships.Application.Helpres;
 
 namespace Battleships
 {
@@ -24,8 +27,9 @@ namespace Battleships
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddFluentValidation(); 
+            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<StartNewGameCommandValidator>()); ; 
             services.RegisterIoDependencies(Configuration);
+            services.AddAutoMapper(typeof(MappingProfiles));
             services.AddSwaggerDocumentation(ApplicationName);
             services.AddMediatRSettings();
             services.AddDbContext<BattleshipsDbContext>(c => c.UseSqlServer(Configuration.GetConnectionString("BattleshipsDatabase")));
