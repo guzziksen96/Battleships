@@ -19,7 +19,6 @@ namespace Battleships.Api.Controllers
         [SwaggerOperation("Start new game")]
         public async Task<ActionResult<int>> StartNewGame(StartNewGameCommand command)
         {
-            //todo add validation of ships!
             var result = await Mediator.Send(command);
             return Ok(result);
            

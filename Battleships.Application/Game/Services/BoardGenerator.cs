@@ -9,16 +9,15 @@ namespace Battleships.Application
 {
     public class BoardGenerator : IBoardGenerator
     {
-        private const int _boardRange = 10;
-        
         public Board Generate()
         {
             var board = new Board();
+
             var carrierCoordinates = GetCoordinates(5, board);
             board.Ships.Add(new Ship("Carrier", carrierCoordinates));
 
             var battleShipCoordinates = GetCoordinates(4, board);
-            board.Ships.Add(new Ship("BattleShip", battleShipCoordinates));
+            board.Ships.Add(new Ship("Battleship", battleShipCoordinates));
 
             var cruiserCoordinates = GetCoordinates(3, board);
             board.Ships.Add(new Ship("Cruiser", cruiserCoordinates));
@@ -39,12 +38,12 @@ namespace Battleships.Application
             
             while(true)
             {
-                var randomRow = random.Next(1, _boardRange + 1);
-                var randomColumn = (char) ('a' + random.Next(0, _boardRange)); 
+                var randomRow = random.Next(1, Board.BoardRange + 1);
+                var randomColumn = (char) ('a' + random.Next(0, Board.BoardRange)); 
                 
                 var randomCoordinate = new Coordinate(randomRow, randomColumn);
 
-                if (!IsOccupied(randomCoordinate, board))
+                if (!board.IsPositionOccupied(randomCoordinate))
                 {
                     var randomShipDirection = (ShipDirection)random.Next(0, 4);
                     var canPlaceShip = CanPlaceShip(randomShipDirection, randomCoordinate, width, board);
@@ -86,7 +85,7 @@ namespace Battleships.Application
             {
                 var transformer = _coordinateTransformer[shipDirection];
                 potentialCoordinate = transformer(potentialCoordinate);
-                if (IsOccupied(potentialCoordinate, board) || !IsInBoardBoundaries(potentialCoordinate))
+                if (board.IsPositionOccupied(potentialCoordinate) || !Board.IsInBoundaries(potentialCoordinate))
                 {
                     return false;
                 }
@@ -95,12 +94,7 @@ namespace Battleships.Application
             return true;
         }
 
-        private bool IsInBoardBoundaries(Coordinate coordinate) 
-            => coordinate.Row >= 1 && coordinate.Row <= 10 && coordinate.Column >= 'a' &&
-               coordinate.Column <= (char) ('a' + 10);
 
-        public bool IsOccupied(Coordinate coordinate, Board board)
-          => board.Ships.Any(s => s.ShipPositions.Contains(coordinate));
 
     }
 }
