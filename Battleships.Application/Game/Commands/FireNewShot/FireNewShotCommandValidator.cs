@@ -1,7 +1,21 @@
-﻿namespace Battleships.Application.Game.Commands.FireNewShot
+﻿using Battleships.Application.Game.Commands.StartGame;
+using Battleships.Domain.Entities;
+using FluentValidation;
+
+namespace Battleships.Application.Game.Commands.FireNewShot
 {
-    public class FireNewShotCommandValidator
+    public class FireNewShotCommandValidator : AbstractValidator<FireNewShotCommand>
     {
-        //TODO VALIDATION
+        public FireNewShotCommandValidator()
+        {
+            RuleFor(c => c.Coordinate).Custom((coordinate, context) =>
+            {
+                bool isCoordinateOnBoard = !Board.IsInBoundaries(coordinate);
+                if (!isCoordinateOnBoard)
+                {
+                    context.AddFailure("Coordinate is not on the board");
+                }
+            });
+        }
     }
 }

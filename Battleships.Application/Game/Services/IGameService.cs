@@ -8,5 +8,6 @@ namespace Battleships.Application.Game.Services
     {
         Task<Domain.Entities.Game> GetFinalState(int gameId, CancellationToken cancellationToken);
         Task<PendingGameStateDto> GetPendingState(int gameId, CancellationToken cancellationToken);
+
     }
 }

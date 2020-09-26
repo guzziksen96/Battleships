@@ -13,7 +13,7 @@ namespace Battleships.Api.Controllers
     public class GameController : BaseController
     {
         [HttpPost]
-        [SwaggerOperation("Start a new game")]
+        [OpenApiOperation("Start a new game", "Start a new game")]
         public async Task<ActionResult<int>> StartNewGame(StartNewGameCommand command)
         {
             var result = await Mediator.Send(command);
@@ -22,7 +22,7 @@ namespace Battleships.Api.Controllers
         }
 
         [HttpGet("{gameId}/finalState")]
-        [SwaggerOperation("Get final game state")]
+        [OpenApiOperation("Get final game state", "Get final game state")]
         public async Task<IActionResult> GetFinalGameState([FromRoute] int gameId)
         {
             var query = new GetFinalGameStateQuery(gameId);
@@ -31,7 +31,7 @@ namespace Battleships.Api.Controllers
         }
 
         [HttpGet("{gameId}/pendingState")]
-        [SwaggerOperation("Get game state")]
+        [OpenApiOperation("Get game state", "Get game state")]
         public async Task<IActionResult> GetPendingGameState([FromRoute] int gameId)
         {
             var query = new GetPendingGameStateQuery(gameId);
@@ -40,7 +40,7 @@ namespace Battleships.Api.Controllers
         }
 
         [HttpPost("{gameId}/shot")]
-        [SwaggerOperation("Fire a new shot")]
+        [OpenApiOperation("Fire a new shot", "Fire a new shot")]
         public async Task<ActionResult<int>> FireNewShot([FromRoute] int gameId, FireNewShotCommand command)
         {
             command.SetGameId(gameId);

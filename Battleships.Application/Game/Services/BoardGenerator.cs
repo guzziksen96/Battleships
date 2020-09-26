@@ -21,6 +21,16 @@ namespace Battleships.Application
             return board; 
         }
 
+        public Coordinate GenerateRandomCoordinate()
+        {
+            var random = new Random();
+            var randomRow = random.Next(1, Board.BoardRange + 1);
+            var randomColumn = (char)('a' + random.Next(0, Board.BoardRange));
+
+            var randomCoordinate = new Coordinate(randomRow, randomColumn);
+            return randomCoordinate;
+        }
+
         private List<Coordinate> GetCoordinates(int width, Board board)
         {
             var result = new List<Coordinate>();
@@ -28,10 +38,7 @@ namespace Battleships.Application
             
             while(true)
             {
-                var randomRow = random.Next(1, Board.BoardRange + 1);
-                var randomColumn = (char) ('a' + random.Next(0, Board.BoardRange)); 
-                
-                var randomCoordinate = new Coordinate(randomRow, randomColumn);
+                var randomCoordinate = GenerateRandomCoordinate();
 
                 if (!board.IsPositionOccupied(randomCoordinate))
                 {
@@ -48,6 +55,8 @@ namespace Battleships.Application
             
             return result;
         }
+
+      
 
         //rename to placeNextCoordinate
         private Dictionary<ShipDirection, Func<Coordinate, Coordinate>> _coordinateTransformer = new Dictionary<ShipDirection, Func<Coordinate, Coordinate>>()

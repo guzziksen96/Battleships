@@ -47,6 +47,7 @@ namespace Battleships.Application.Game.Services
                 .ThenInclude(s => s.Coordinate)
                 .Include(g => g.ComputerBoard.MissShots)
                 .ThenInclude(s => s.Coordinate)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == gameId, cancellationToken);
             return gameEntity;
         }
