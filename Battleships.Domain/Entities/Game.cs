@@ -13,8 +13,8 @@ namespace Battleships.Domain.Entities
         }
         public Board PlayerBoard { get; set; }
         public Board ComputerBoard { get; set; }
-        public void PlayerShootAt(Coordinate coordinate) => ComputerBoard.ShootAt(coordinate);
-        public void ComputerShootAt(Coordinate coordinate) => PlayerBoard.ShootAt(coordinate);
+        public FireResult PlayerShootAt(Coordinate coordinate) => ComputerBoard.ShootAt(coordinate);
+        public FireResult ComputerShootAt(Coordinate coordinate) => PlayerBoard.ShootAt(coordinate);
         public GameResultEnum GetResult()
         {
             if (PlayerBoard.Ships.All(s => s.IsSunk(PlayerBoard.HitShots)))

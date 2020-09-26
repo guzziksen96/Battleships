@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using Battleships.Application.Game.Models;
+using Battleships.Domain.Enums;
 using Battleships.Infrastructure;
 using Battleships.Infrastructure.DatabaseEntities;
 using Microsoft.EntityFrameworkCore;
@@ -24,12 +25,12 @@ namespace Battleships.Application.Game.Services
 
             return _mapper.Map<Domain.Entities.Game>(gameEntity);
         }
-        public async Task<PendingGameStateDto> GetPendingState(int gameId, CancellationToken cancellationToken)
+        public async Task<GameStateDto> GetGameState(int gameId, CancellationToken cancellationToken)
         {
             var gameEntity = await GetGameEntity(gameId, cancellationToken);
             var game = _mapper.Map<Domain.Entities.Game>(gameEntity);
 
-            return _mapper.Map<PendingGameStateDto>(game);
+            return _mapper.Map<GameStateDto>(game);
         }
 
         private async Task<GameEntity> GetGameEntity(int gameId, CancellationToken cancellationToken)

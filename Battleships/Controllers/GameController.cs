@@ -21,6 +21,7 @@ namespace Battleships.Api.Controllers
            
         }
 
+        //todo - add comment used only when user lost to display computer ships
         [HttpGet("{gameId}/finalState")]
         [OpenApiOperation("Get final game state", "Get final game state")]
         public async Task<IActionResult> GetFinalGameState([FromRoute] int gameId)
@@ -30,7 +31,7 @@ namespace Battleships.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{gameId}/pendingState")]
+        [HttpGet("{gameId}/state")]
         [OpenApiOperation("Get game state", "Get game state")]
         public async Task<IActionResult> GetPendingGameState([FromRoute] int gameId)
         {

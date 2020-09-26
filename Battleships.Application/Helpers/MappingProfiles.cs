@@ -53,7 +53,8 @@ namespace Battleships.Application.Helpres
                     .Where(ship => ship.IsSunk(s.HitShots))
                     .Select(sh => sh.Name)));
 
-            CreateMap<Domain.Entities.Game, PendingGameStateDto>();
+            CreateMap<Domain.Entities.Game, GameStateDto>()
+                .ForMember(dto => dto.Result, g => g.MapFrom(game => game.GetResult()));
         }
     }
 }

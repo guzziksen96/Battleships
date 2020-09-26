@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Battleships.Domain.Enums;
 
 namespace Battleships.Domain.Entities
 {
@@ -19,19 +20,19 @@ namespace Battleships.Domain.Entities
         public List<Coordinate> MissShots { get; set; } = new List<Coordinate>();
         public List<Coordinate> HitShots { get; set; } = new List<Coordinate>();
 
-        public void ShootAt(Coordinate coordinate)
+        public FireResult ShootAt(Coordinate coordinate)
         {
             foreach (var ship in Ships)
             {
                 if (ship.ShipPositions.Contains(coordinate))
                 {
                     HitShots.Add(coordinate);
-                }
-                else
-                {
-                    MissShots.Add(coordinate);
+                    return FireResult.Hit;
                 }
             }
+
+            MissShots.Add(coordinate);
+            return FireResult.Miss;
         }
         public bool IsPositionOccupied(Coordinate coordinate)
             => Ships.Any(s => s.ShipPositions.Contains(coordinate));

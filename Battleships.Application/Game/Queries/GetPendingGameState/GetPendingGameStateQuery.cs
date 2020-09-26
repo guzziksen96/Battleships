@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Battleships.Application.Game.Queries.GetPendingGameState
 {
-    public class GetPendingGameStateQuery : IRequest<PendingGameStateDto>
+    public class GetPendingGameStateQuery : IRequest<GameStateDto>
     {
         public int GameId { get; }
 

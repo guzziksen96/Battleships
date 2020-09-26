@@ -9,7 +9,7 @@ using MediatR;
 
 namespace Battleships.Application.Game.Queries.GetPendingGameState
 {
-    public class GetPendingGameStateQueryHandler : IRequestHandler<GetPendingGameStateQuery, PendingGameStateDto>
+    public class GetPendingGameStateQueryHandler : IRequestHandler<GetPendingGameStateQuery, GameStateDto>
     {
         private readonly IGameService _gameService;
         public GetPendingGameStateQueryHandler(IGameService gameService)
@@ -17,9 +17,9 @@ namespace Battleships.Application.Game.Queries.GetPendingGameState
             _gameService = gameService;
         }
 
-        public async Task<PendingGameStateDto> Handle(GetPendingGameStateQuery request, CancellationToken cancellationToken)
+        public async Task<GameStateDto> Handle(GetPendingGameStateQuery request, CancellationToken cancellationToken)
         {
-            return await _gameService.GetPendingState(request.GameId, cancellationToken);
+            return await _gameService.GetGameState(request.GameId, cancellationToken);
         }
     }
 }

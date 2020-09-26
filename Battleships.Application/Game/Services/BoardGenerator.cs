@@ -21,7 +21,18 @@ namespace Battleships.Application
             return board; 
         }
 
-        public Coordinate GenerateRandomCoordinate()
+        public Coordinate GenerateRandomNotFiredCoordinate(List<Coordinate> firedCoordinates)
+        {
+            while (true)
+            {
+                var randomCoordinate = GenerateRandomCoordinate();
+                if (!firedCoordinates.Contains(randomCoordinate))
+                    return randomCoordinate;
+
+            }
+        }
+
+        private Coordinate GenerateRandomCoordinate()
         {
             var random = new Random();
             var randomRow = random.Next(1, Board.BoardRange + 1);
