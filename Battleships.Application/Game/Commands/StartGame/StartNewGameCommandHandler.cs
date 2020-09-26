@@ -18,13 +18,13 @@ namespace Battleships.Application.Game.Commands.StartGame
         }
         public async Task<int> Handle(StartNewGameCommand request, CancellationToken cancellationToken)
         {
-            
             var playerBoard = new Board(request.Ships);
 
-            var result = await _boardGenerator.Generate();
-            var gameState = new GameState(playerBoard, result);
+            var computerBoard = _boardGenerator.Generate();
+            var newGame = new Domain.Entities.Game(playerBoard, computerBoard);
+
             //todo create new service which will save new game 
-            return result.Id;
+            return newGame.Id;
         }
     }
 }

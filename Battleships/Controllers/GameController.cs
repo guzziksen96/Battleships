@@ -25,7 +25,7 @@ namespace Battleships.Api.Controllers
            
         }
 
-        [HttpGet("state/{gameId}")]
+        [HttpGet("{gameId}/state")]
         [SwaggerOperation("Get game state")]
         public async Task<IActionResult> GetGameState([FromRoute] int gameId)
         {

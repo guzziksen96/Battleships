@@ -7,7 +7,6 @@ namespace Battleships.Application
 {
     public interface IBoardGenerator
     {
-        //Task<int> Generate();
-        Task<Board> Generate();
+        Board Generate();
     }
 }

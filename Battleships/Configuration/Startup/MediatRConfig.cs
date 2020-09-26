@@ -16,7 +16,6 @@ namespace Battleships.Api.Configuration.Startup
         public static IServiceCollection AddMediatRSettings(this IServiceCollection services)
         {
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
-           // services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddMediatR(typeof(StartNewGameCommand).GetTypeInfo().Assembly);
 

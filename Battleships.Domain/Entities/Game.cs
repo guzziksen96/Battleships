@@ -6,10 +6,10 @@ using Battleships.Domain.Enums;
 
 namespace Battleships.Domain.Entities
 {
-    public class GameState
+    public class Game
     {
         public int Id { get; set; }
-        public GameState(Board playerBoard, Board computerBoard)
+        public Game(Board playerBoard, Board computerBoard)
         {
             PlayerBoard = playerBoard;
             ComputerBoard = computerBoard;

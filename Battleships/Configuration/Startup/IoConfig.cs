@@ -15,7 +15,7 @@ namespace Battleships.Api.Configuration.Startup
             IConfiguration configuration)
         {
             services.AddScoped<IBoardGenerator, BoardGenerator>();
-            services.AddScoped<IGameStateService, GameStateService>();
+            services.AddScoped<IGameService, GameService>();
 
             return services;
         }

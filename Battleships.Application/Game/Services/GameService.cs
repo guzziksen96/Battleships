@@ -7,9 +7,9 @@ using Battleships.Domain.Entities;
 
 namespace Battleships.Application.Game.Services
 {
-    public class GameStateService : IGameStateService
+    public class GameService : IGameService
     {
-        public async Task<GameState> Get(int gameId, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Game> Get(int gameId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

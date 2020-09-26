@@ -7,14 +7,14 @@ namespace Battleships.Domain.Entities
 {
     public class Ship
     {
-        public Ship(string name, List<Coordinate> occupiedCoordinates)
+        public Ship(string name, List<Coordinate> shipPositions)
         {
             Name = name;
-            OccupiedCoordinates = occupiedCoordinates;
+            ShipPositions = shipPositions;
         }
         public string Name { get; set; }
-        public List<Coordinate> OccupiedCoordinates { get; set; }
-        public bool IsSunk(List<Coordinate> shotsAt) => OccupiedCoordinates.All(shotsAt.Contains);
-        public bool IsCollidingWith(Ship ship) => OccupiedCoordinates.Any(s => ship.OccupiedCoordinates.Contains(s));
+        public List<Coordinate> ShipPositions { get; set; }
+        public bool IsSunk(List<Coordinate> shotsAt) => ShipPositions.All(shotsAt.Contains);
+        public bool IsCollidingWith(Ship ship) => ShipPositions.Any(s => ship.ShipPositions.Contains(s));
     }
 }

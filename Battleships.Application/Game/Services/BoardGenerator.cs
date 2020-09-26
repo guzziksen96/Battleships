@@ -11,7 +11,7 @@ namespace Battleships.Application
     {
         private const int _boardRange = 10;
         
-        public async Task<Board> Generate()
+        public Board Generate()
         {
             var board = new Board();
             var carrierCoordinates = GetCoordinates(5, board);
@@ -29,13 +29,9 @@ namespace Battleships.Application
             var destroyerCoordinates = GetCoordinates(2, board);
             board.Ships.Add(new Ship("Destroyer", destroyerCoordinates));
  
-            return board; //save board and return board id
+            return board; 
         }
 
-        //public int Generate()
-        //{
-        //    return 1;
-        //}
         private List<Coordinate> GetCoordinates(int width, Board board)
         {
             var result = new List<Coordinate>();
@@ -104,7 +100,7 @@ namespace Battleships.Application
                coordinate.Column <= (char) ('a' + 10);
 
         public bool IsOccupied(Coordinate coordinate, Board board)
-          => board.Ships.Any(s => s.OccupiedCoordinates.Contains(coordinate));
+          => board.Ships.Any(s => s.ShipPositions.Contains(coordinate));
 
     }
 }

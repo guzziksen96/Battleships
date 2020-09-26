@@ -9,17 +9,17 @@ using MediatR;
 
 namespace Battleships.Application.Game.Queries
 {
-    public class GetGameStateQueryHandler : IRequestHandler<GetGameStateQuery, GameState>
+    public class GetGameStateQueryHandler : IRequestHandler<GetGameStateQuery, Domain.Entities.Game>
     {
-        private readonly IGameStateService _gameStateService;
-        public GetGameStateQueryHandler(IGameStateService gameStateService)
+        private readonly IGameService _gameService;
+        public GetGameStateQueryHandler(IGameService gameService)
         {
-            _gameStateService = gameStateService;
+            _gameService = gameService;
         }
 
-        public async Task<GameState> Handle(GetGameStateQuery request, CancellationToken cancellationToken)
+        public async Task<Domain.Entities.Game> Handle(GetGameStateQuery request, CancellationToken cancellationToken)
         {
-            return await _gameStateService.Get(request.GameId, cancellationToken);
+            return await _gameService.Get(request.GameId, cancellationToken);
         }
     }
 }
