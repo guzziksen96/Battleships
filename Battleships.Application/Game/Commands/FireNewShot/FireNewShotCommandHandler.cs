@@ -54,7 +54,7 @@ namespace Battleships.Application.Game.Commands.FireNewShot
 
             var game = _mapper.Map<Domain.Entities.Game>(gameEntity);
 
-            var playerFiredCoordinates = game.ComputerBoard.HitShots.Union(game.PlayerBoard.MissShots).ToList();
+            var playerFiredCoordinates = game.ComputerBoard.HitShots.Union(game.ComputerBoard.MissShots).ToList();
             if(playerFiredCoordinates.Contains(request.Coordinate))
                 throw new AlreadyFiredCoordinateException();
 

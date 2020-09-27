@@ -40,7 +40,7 @@ namespace Battleships.Application.Game.Commands.StartGame
             });
         }
 
-        private bool AreShipsNotColliding(List<Ship> ships)
+        public bool AreShipsNotColliding(List<Ship> ships)
         {
             for (int i = 0; i < ships.Count - 1; i++)
             {
@@ -58,7 +58,7 @@ namespace Battleships.Application.Game.Commands.StartGame
             return true;
         }
 
-        private bool AreShipsInBoardRange(List<Ship> ships)
+        public bool AreShipsInBoardRange(List<Ship> ships)
         {
             foreach (var ship in ships)
             {
@@ -71,7 +71,7 @@ namespace Battleships.Application.Game.Commands.StartGame
             return true;
         }
 
-        private bool AreShipsNamesValid(List<Ship> ships)
+        public bool AreShipsNamesValid(List<Ship> ships)
         {
             if (ships.Count != ShipNames.All.Length)
             {
@@ -90,7 +90,7 @@ namespace Battleships.Application.Game.Commands.StartGame
             return true;
         }
 
-        private bool AreShipsWidthValid(List<Ship> ships)
+        public bool AreShipsWidthValid(List<Ship> ships)
         {
             foreach (var shipName in ShipNames.All)
             {
