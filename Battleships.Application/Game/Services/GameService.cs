@@ -1,58 +1,29 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Battleships.Application.Game.Models;
-using Battleships.Domain.Enums;
-using Battleships.Infrastructure;
-using Battleships.Infrastructure.DatabaseEntities;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Battleships.Application.Game.Services
 {
     public class GameService : IGameService
     {
-        private readonly BattleshipsDbContext _context;
-        private readonly IMapper _mapper;
-
-        public GameService(BattleshipsDbContext context, IMapper mapper)
+        private readonly IMemoryCache _memoryCache;
+        public GameService(IMemoryCache memoryCache)
         {
-            _context = context;
-            _mapper = mapper;
-        }
-        public async Task<Domain.Entities.Game> GetFinalState(int gameId, CancellationToken cancellationToken)
-        {
-            var gameEntity = await GetGameEntity(gameId, cancellationToken);
-
-            return _mapper.Map<Domain.Entities.Game>(gameEntity);
-        }
-        public async Task<GameStateDto> GetGameState(int gameId, CancellationToken cancellationToken)
-        {
-            var gameEntity = await GetGameEntity(gameId, cancellationToken);
-            var game = _mapper.Map<Domain.Entities.Game>(gameEntity);
-
-            return _mapper.Map<GameStateDto>(game);
+            _memoryCache = memoryCache;
         }
 
-        private async Task<GameEntity> GetGameEntity(int gameId, CancellationToken cancellationToken)
+        public Domain.Entities.Game Get(Guid gameId)
         {
-            var gameEntity = await _context.Games
-                .Include(g => g.PlayerBoard.Ships)
-                .ThenInclude(s => s.ShipPositions).ThenInclude(sp => sp.Coordinate)
-                .Include(g => g.PlayerBoard.HitShots)
-                .ThenInclude(s => s.Coordinate)
-                .Include(g => g.PlayerBoard.MissShots)
-                .ThenInclude(s => s.Coordinate)
-                .Include(g => g.ComputerBoard.Ships)
-                .ThenInclude(s => s.ShipPositions).ThenInclude(sp => sp.Coordinate)
-                .Include(g => g.ComputerBoard.HitShots)
-                .ThenInclude(s => s.Coordinate)
-                .Include(g => g.ComputerBoard.MissShots)
-                .ThenInclude(s => s.Coordinate)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == gameId, cancellationToken);
-            return gameEntity;
+            return _memoryCache.Get<Domain.Entities.Game>(gameId);
         }
 
-       
+        public void Set(Domain.Entities.Game game)
+        {
+            _memoryCache.Remove(game.Id);
+            _memoryCache.Set(game.Id, game);
+        }
     }
 }

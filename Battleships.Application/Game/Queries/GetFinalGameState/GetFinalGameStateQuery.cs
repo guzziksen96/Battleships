@@ -1,13 +1,14 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace Battleships.Application.Game.Queries
 {
     public class GetFinalGameStateQuery : IRequest<Domain.Entities.Game>
     {
-        public GetFinalGameStateQuery(int gameId)
+        public GetFinalGameStateQuery(Guid gameId)
         {
             GameId = gameId;
         }
-        public int GameId { get; }
+        public Guid GameId { get; }
     }
 }

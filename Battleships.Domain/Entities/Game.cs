@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Battleships.Domain.Enums;
 
 namespace Battleships.Domain.Entities
 {
     public class Game
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Game(Board playerBoard, Board computerBoard)
         {
             PlayerBoard = playerBoard;

@@ -15,7 +15,7 @@ namespace Battleships.Application.Game.Queries
 
         public async Task<Domain.Entities.Game> Handle(GetFinalGameStateQuery request, CancellationToken cancellationToken)
         {
-            return await _gameService.GetFinalState(request.GameId, cancellationToken);
+            return _gameService.Get(request.GameId);
         }
     }
 }

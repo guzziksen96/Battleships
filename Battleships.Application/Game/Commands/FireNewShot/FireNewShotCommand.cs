@@ -1,4 +1,5 @@
-﻿using Battleships.Domain.Entities;
+﻿using System;
+using Battleships.Domain.Entities;
 using MediatR;
 
 namespace Battleships.Application.Game.Commands.FireNewShot
@@ -7,8 +8,8 @@ namespace Battleships.Application.Game.Commands.FireNewShot
     {
         public Coordinate Coordinate { get; set; }
 
-        public int GameId { get; private set; }
+        public Guid GameId { get; private set; }
 
-        public void SetGameId(int gameId) => GameId = gameId;
+        public void SetGameId(Guid gameId) => GameId = gameId;
     }
 }

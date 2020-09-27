@@ -8,9 +8,9 @@ namespace Battleships.Application.Game.Queries.GetPendingGameState
 {
     public class GetPendingGameStateQuery : IRequest<GameStateDto>
     {
-        public int GameId { get; }
+        public Guid GameId { get; }
 
-        public GetPendingGameStateQuery(int gameId)
+        public GetPendingGameStateQuery(Guid gameId)
         {
             GameId = gameId;
         }
