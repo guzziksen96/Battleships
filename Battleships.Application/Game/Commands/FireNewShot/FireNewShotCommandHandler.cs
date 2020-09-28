@@ -15,11 +15,9 @@ namespace Battleships.Application.Game.Commands.FireNewShot
     public class FireNewShotCommandHandler : IRequestHandler<FireNewShotCommand, int>
     {
         private readonly IBoardGenerator _boardGenerator;
-        private readonly IMapper _mapper;
         private readonly IGameService _gameService;
-        public FireNewShotCommandHandler(IMapper mapper, IBoardGenerator boardGenerator, IGameService gameService)
+        public FireNewShotCommandHandler(IBoardGenerator boardGenerator, IGameService gameService)
         {
-            _mapper = mapper;
             _boardGenerator = boardGenerator;
             _gameService = gameService;
         }
