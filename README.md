@@ -1,6 +1,6 @@
 # Battleships
 
-1. Introduction
+**Introduction**
 The repository contains the backend side of the solution for interview task in Guestline. 
 
 **Used technologies**
