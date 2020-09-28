@@ -1,7 +1,6 @@
 # Battleships
 
-**Introduction**
-The repository contains the backend side of the solution for interview task in Guestline. 
+The repository contains the backend of the solution for interview task in Guestline. 
 
 **Used technologies**
 * .NET Core 3.1 Web API
