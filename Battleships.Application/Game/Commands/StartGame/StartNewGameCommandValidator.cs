@@ -94,12 +94,13 @@ namespace Battleships.Application.Game.Commands.StartGame
         {
             foreach (var shipName in ShipNames.All)
             {
-                var ship = ships.First(s => s.Name == shipName);
-                var validShipWidth = ShipWidths.Values[shipName];
-                if (ship.ShipPositions.Count() != validShipWidth)
-                {
+                var ship = ships.FirstOrDefault(s => s.Name == shipName);
+                if (ship == null)
                     return false;
-                }
+
+                var validShipWidth = ShipWidths.Values[shipName];
+                if (ship?.ShipPositions.Count() != validShipWidth)
+                    return false;
             }
 
             return true;

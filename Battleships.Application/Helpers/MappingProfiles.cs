@@ -15,7 +15,7 @@ namespace Battleships.Application.Helpres
                     .Select(sh => sh.Name)));
 
             CreateMap<Domain.Entities.Game, GameStateDto>()
-                .ForMember(dto => dto.Result, g => g.MapFrom(game => game.GetResult()));
+                .ForMember(dto => dto.Result, g => g.MapFrom(game => game.GetResult().ToString()));
         }
     }
 }

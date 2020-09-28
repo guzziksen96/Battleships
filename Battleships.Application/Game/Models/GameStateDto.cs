@@ -7,6 +7,6 @@ namespace Battleships.Application.Game.Models
     {
         public Board PlayerBoard { get; set; }
         public ComputerBoardDto ComputerBoard { get; set; }
-        public GameResultEnum Result { get; set; }
+        public string Result { get; set; }
     }
 }
