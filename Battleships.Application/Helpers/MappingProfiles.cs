@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System;
 using System.Linq;
-using System.Linq.Expressions;
 using Battleships.Application.Game.Models;
 using Battleships.Domain.Entities;
 

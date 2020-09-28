@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
-using Battleships.Application.Game.Models;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Battleships.Application.Game.Services

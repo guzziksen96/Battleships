@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleships.Domain.Entities;
+﻿using Battleships.Domain.Entities;
 using Battleships.Domain.Enums;
 
 namespace Battleships.Application.Game.Models

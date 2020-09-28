@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Battleships.Application.Game.Models;
 
 namespace Battleships.Application.Game.Services
 {

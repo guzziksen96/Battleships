@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Battleships.Application.Game.Models;
 using MediatR;
 

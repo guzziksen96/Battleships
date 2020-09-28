@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using Battleships.Application.Exception;
 using Battleships.Application.Game.Services;
-using Battleships.Domain.Entities;
 using Battleships.Domain.Enums;
 using MediatR;
 

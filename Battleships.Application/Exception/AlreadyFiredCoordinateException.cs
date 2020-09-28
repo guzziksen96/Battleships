@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Battleships.Application.Exception
+﻿namespace Battleships.Application.Exception
 {
     public class AlreadyFiredCoordinateException : System.Exception
     {
