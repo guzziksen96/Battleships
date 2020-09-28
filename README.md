@@ -11,4 +11,4 @@ The repository contains the backend of the solution for interview task in Guestl
 The Swagger documentation of Web API endpoints is prepared using NSwag available under:
 https://localhost:44396/swagger/index.html
 
-To start the application run `dotnet run`
+To start the application run  `dotnet run` command
