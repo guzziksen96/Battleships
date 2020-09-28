@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoFixture;
 using AutoFixture.Xunit2;
-using AutoMapper;
 using Battleships.Application.Exception;
 using Battleships.Application.Game.Commands.FireNewShot;
-using Battleships.Application.Game.Services;
-using Battleships.Application.Helpres;
 using Battleships.Application.Tests.Factories;
 using Battleships.Application.Tests.Mocks;
 using Battleships.Domain.Entities;

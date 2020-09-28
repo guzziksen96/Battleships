@@ -67,7 +67,6 @@ namespace Battleships.Application
             return result;
         }
 
-        //rename to placeNextCoordinate
         private Dictionary<ShipDirection, Func<Coordinate, Coordinate>> _coordinateTransformer = new Dictionary<ShipDirection, Func<Coordinate, Coordinate>>()
         {
             {ShipDirection.North, c => new Coordinate(c.Row - 1, c.Column)},

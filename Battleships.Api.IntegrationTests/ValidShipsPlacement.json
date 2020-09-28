@@ -1,0 +1,97 @@
+{
+  "ships": [
+    {
+      "name": "Carrier",
+      "shipPositions": [
+        {
+          "row": 1,
+          "column": "i"
+        },
+        {
+          "row": 1,
+          "column": "h"
+        },
+        {
+          "row": 1,
+          "column": "g"
+        },
+        {
+          "row": 1,
+          "column": "f"
+        },
+        {
+          "row": 1,
+          "column": "e"
+        }
+      ]
+    },
+    {
+      "name": "Battleship",
+      "shipPositions": [
+        {
+          "row": 6,
+          "column": "h"
+        },
+        {
+          "row": 6,
+          "column": "g"
+        },
+        {
+          "row": 6,
+          "column": "f"
+        },
+        {
+          "row": 6,
+          "column": "e"
+        }
+      ]
+    },
+    {
+      "name": "Cruiser",
+      "shipPositions": [
+        {
+          "row": 2,
+          "column": "d"
+        },
+        {
+          "row": 2,
+          "column": "e"
+        },
+        {
+          "row": 2,
+          "column": "f"
+        }
+      ]
+    },
+    {
+      "name": "Submarine",
+      "shipPositions": [
+        {
+          "row": 10,
+          "column": "f"
+        },
+        {
+          "row": 10,
+          "column": "g"
+        },
+        {
+          "row": 10,
+          "column": "h"
+        }
+      ]
+    },
+    {
+      "name": "Destroyer",
+      "shipPositions": [
+        {
+          "row": 8,
+          "column": "h"
+        },
+        {
+          "row": 9,
+          "column": "h"
+        }
+      ]
+    }
+  ]
+}
