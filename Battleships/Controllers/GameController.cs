@@ -22,7 +22,7 @@ namespace Battleships.Api.Controllers
            
         }
 
-        //todo - add comment used only when user lost to display computer ships
+        //todo - used only when user lost to display computer ships
         [HttpGet("{gameId}/finalState")]
         [OpenApiOperation("Get final game state", "Get final game state")]
         public async Task<IActionResult> GetFinalGameState([FromRoute] Guid gameId)

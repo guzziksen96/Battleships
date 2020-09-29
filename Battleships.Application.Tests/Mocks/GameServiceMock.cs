@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Battleships.Application.Game.Services;
+﻿using Battleships.Application.Game.Services;
 using Moq;
 
 namespace Battleships.Application.Tests.Mocks

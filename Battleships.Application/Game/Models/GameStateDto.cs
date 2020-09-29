@@ -1,5 +1,4 @@
 ﻿using Battleships.Domain.Entities;
-using Battleships.Domain.Enums;
 
 namespace Battleships.Application.Game.Models
 {
